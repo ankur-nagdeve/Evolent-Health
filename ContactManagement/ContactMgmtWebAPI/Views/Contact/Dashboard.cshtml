@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h2>Contact Management Dashboard</h2>
+
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Resources/JS/Module/contactApp.js"></script>
+<script src="~/Resources/JS/Controller/contactController.js"></script>
+<script src="~/Resources/JS/Service/contactService.js"></script>
+<link href="~/Resources/CSS/CustomCheckbox.css" type="text/css" rel="stylesheet" />
+
+
+<div ng-app="contactApp">
+    <div ng-controller="contactController">
+        <form novalidate name="frmContact" id="frmContact" class="form-horizontal row-border">
+            <br />
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17"> First Name</label>
+                    <div class="col-md-7">
+                        <input type="text"
+                               id="idFirstName"
+                               class="form-control" 
+                               name="nameFirstName" ng-model="firstName" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17"> Last Name</label>
+                    <div class="col-md-7">
+                        <input type="text"
+                               id="idLastName"
+                               class="form-control"
+                               name="nameFirstName" ng-model="lasttName" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17"> Email</label>
+                    <div class="col-md-7">
+                        <input type="text"
+                               id="idEmail"
+                               class="form-control"
+                               name="nameEmail" ng-model="email" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17"> Phone Number</label>
+                    <div class="col-md-7">
+                        <input type="text"
+                               id="idPhoneNumber"
+                               class="form-control"
+                               name="phoneNumber" ng-model="phoneNumber" />
+                    </div>
+                </div>
+                <div id="status">
+                    <label class="col-md-4 control-label" for="input17">Status</label>
+                    <div class="col-md-7">
+                        <label class="container">
+                            {{status |checkmark}}
+                            <input type="checkbox"
+                                   id="idStatus"
+                                   class=""
+                                   name="status" ng-model="status" />
+                            <span class="checkmark"></span>
+                        </label>
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-7">
+                        <span id="save" class="btn btn-success margin-right-btn" ng-click="SaveUpdate()">
+                            <i class="icon-save"></i> {{btnText}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr />
+            <table class="table table-hover general-table">
+                <thead class="grid-top-panel">
+                    <tr>
+                        <th style="display:none">ContactID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Status</th>
+                        <th style="text-align:center;">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="dataModel in contacts">
+                        <td style="display:none">{{dataModel.ContactID}}</td>
+                        <td> {{dataModel.FirstName}}</td>
+                        <td> {{dataModel.LastName}}</td>
+                        <td>{{dataModel.Email}}</td>
+                        <td>{{dataModel.PhoneNumber}}</td>
+                        <td>{{dataModel.Status|checkmark}}</td>
+                        <td style="text-align:center; color:white">
+                            <span>
+                                <span id="save" class="btn btn-primary margin-right-btn" ng-click="GetContactByID(dataModel)">
+                                    Edit
+                                </span>
+                            </span>
+                            <span>
+                                <span id="save" class="btn btn-danger margin-right-btn" ng-click="DeleteContact(dataModel)">
+                                    Delete
+                                </span>
+                            </span>
+                        </td>                        
+                    </tr>
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+
+            <br />
+            <br />
+        </form>
+
+
+    </div>
+</div>
